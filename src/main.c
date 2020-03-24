@@ -1,6 +1,7 @@
 #include "../include/uart.h"
 #include "../include/util.h"
 #include "../include/reboot.h"
+#include "../include/mbox.h"
 void main()
 {
     int length = 0;

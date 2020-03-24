@@ -1,4 +1,5 @@
 #include"../include/uart.h"
+#include"../include/mbox.h"
 
 /* PL011 UART registers */
 #define UART0_DR        ((volatile unsigned int*)(MMIO_BASE+0x00201000))

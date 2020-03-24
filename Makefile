@@ -4,8 +4,8 @@ CC = aarch64-linux-gnu
 CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles
 all: kernel8.img
 
-kernel8.img:  obj/main.o obj/uart.o obj/start.o obj/reboot.o obj/util.o
-	${CC}-ld -Iinclude -T src/link.ld -o kernel8.elf obj/start.o obj/main.o obj/uart.o obj/reboot.o obj/util.o
+kernel8.img:  obj/main.o obj/uart.o obj/start.o obj/reboot.o obj/util.o obj/mbox.o
+	${CC}-ld -Iinclude -T src/link.ld -o kernel8.elf obj/start.o obj/main.o obj/uart.o obj/reboot.o obj/util.o obj/mbox.o
 	${CC}-objcopy -O binary kernel8.elf kernel8.img
 
 obj/start.o: src/start.S
@@ -23,9 +23,12 @@ obj/reboot.o: src/reboot.c
 obj/util.o: src/util.c
 	${CC}-gcc ${CFLAGS} -c src/util.c -o obj/util.o
 
+obj/mbox.o: src/mbox.c
+	${CC}-gcc ${CFLAGS} -c src/mbox.c -o obj/mbox.o
+
 clean:
 	rm -f kernel8.elf
 	rm -f obj/*
 
 run:
-	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
+	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial stdio
