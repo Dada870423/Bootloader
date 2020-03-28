@@ -21,6 +21,14 @@ extern volatile unsigned int mbox[36];
 #define MBOX_TAG_SETCLKRATE     0x38002
 #define MBOX_TAG_LAST           0
 
+#define MBOX_TAG_GETBOARDREVISION 		0x10002
+#define MBOX_TAG_GETVCMEMORYADDR		0x10006
+
+
+
+
+
+
 int mbox_call(unsigned char ch);
 
 #endif

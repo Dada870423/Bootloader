@@ -2,6 +2,7 @@
 #include "../include/util.h"
 #include "../include/reboot.h"
 #include "../include/mbox.h"
+#include "../include/get_HW_info.h"
 void main()
 {
     int length = 0;
@@ -17,6 +18,15 @@ void main()
     uart_init();
 
     uart_getc();
+
+    uart_puts("Hardware information:\r\n");
+    Get_Serial_number();
+    Get_Board_revision();
+    Get_VC_mem();
+
+
+
+
     // welcome
     uart_puts("\r\nWelcome to Lab2\n# ");
     int i;
