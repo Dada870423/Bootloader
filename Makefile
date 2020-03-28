@@ -1,30 +1,26 @@
 #OSDI LAB 1
 
 CC = aarch64-linux-gnu
-CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles
+CFLAGS = -fPIC -Include -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -mgeneral-regs-only
+ASMOPS = -fPIC -Iinclude
 all: kernel8.img
 
-kernel8.img:  obj/main.o obj/uart.o obj/start.o obj/reboot.o obj/util.o obj/mbox.o
-	${CC}-ld -Iinclude -T src/link.ld -o kernel8.elf obj/start.o obj/main.o obj/uart.o obj/reboot.o obj/util.o obj/mbox.o
-	${CC}-objcopy -O binary kernel8.elf kernel8.img
 
-obj/start.o: src/start.S
-	${CC}-gcc ${CFLAGS} -c src/start.S -o obj/start.o
 
-obj/main.o: src/main.c
-	${CC}-gcc ${CFLAGS} -c src/main.c -o obj/main.o
+SRC_DIR = src
+BUILD_DIR = obj
 
-obj/uart.o: src/uart.c
-	${CC}-gcc ${CFLAGS} -c src/uart.c -o obj/uart.o
 
-obj/reboot.o: src/reboot.c
-	${CC}-gcc ${CFLAGS} -c src/reboot.c -o obj/reboot.o
-	
-obj/util.o: src/util.c
-	${CC}-gcc ${CFLAGS} -c src/util.c -o obj/util.o
+${BUILD_DIR}/%.o: ${SRC_DIR}/%.c
+	${CC}-gcc ${CFLAGS} -c $< -o $@
 
-obj/mbox.o: src/mbox.c
-	${CC}-gcc ${CFLAGS} -c src/mbox.c -o obj/mbox.o
+C_FILES = $(wildcard $(SRC_DIR)/*.c)
+OBJ_FILES = $(C_FILES:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+
+
+kernel8.img: ${SRC_DIR}/link.ld ${OBJ_FILES} 
+	${CC}-ld -Iinclude -T ${SRC_DIR}/link.ld -o ${BUILD_DIR}/kernel8.elf ${OBJ_FILES}
+	${CC}-objcopy -O binary ${BUILD_DIR}/kernel8.elf kernel8.img
 
 clean:
 	rm -f kernel8.elf

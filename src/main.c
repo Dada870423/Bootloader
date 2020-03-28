@@ -1,4 +1,4 @@
-#include "../include/uart.h"
+#include "../include/mini_uart.h"
 #include "../include/util.h"
 #include "../include/reboot.h"
 #include "../include/mbox.h"

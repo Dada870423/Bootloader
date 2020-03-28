@@ -1,5 +1,5 @@
-#ifndef _MBOX_H_
-#define _MBOX_H_
+#ifndef _UART_H_
+#define _UART_H_
 
 #include "gpio.h"
 
