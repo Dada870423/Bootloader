@@ -1,5 +1,5 @@
 #include "../include/util.h"
-#include "../include/mini_uart.h"
+#include "../include/uart.h"
 void Print_Int(unsigned long long int input)
 {
 	int Flag = 0, i;

@@ -1,4 +1,4 @@
-#include "../include/mini_uart.h"
+#include "../include/uart.h"
 #include "../include/util.h"
 #include "../include/reboot.h"
 #include "../include/mbox.h"
@@ -18,7 +18,7 @@ void main()
 
     uart_getc();
     // welcome
-    uart_puts("\r\nWelcome to Lab1\n# ");
+    uart_puts("\r\nWelcome to Lab2\n# ");
     int i;
     //declare and initial the command buffer
     char input[100];
