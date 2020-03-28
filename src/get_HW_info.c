@@ -26,7 +26,7 @@ void Get_Serial_number()
         uart_puts("My serial number is: ");
         uart_hex(mbox[5]);
         uart_hex(mbox[6]);
-		uart_puts("\n");
+        uart_puts("\n");
     } 
     else uart_puts("Unable to query serial!\n");
     
@@ -66,7 +66,7 @@ void Get_VC_mem()
     mbox[6] = 0;
     mbox[7] = MBOX_TAG_LAST;
 
-	if(mbox_call(MBOX_CH_PROP)) 
+    if(mbox_call(MBOX_CH_PROP)) 
     {
         uart_puts("My VC memory base address is: ");
         uart_hex(mbox[5]);
