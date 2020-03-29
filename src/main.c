@@ -17,7 +17,7 @@ void main()
     // set up serial console
     uart_init();
 
-    uart_getc();
+    // uart_getc();
 
     uart_puts("Hardware information:\r\n");
     Get_Serial_number();
