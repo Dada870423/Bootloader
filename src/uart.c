@@ -62,6 +62,28 @@ void uart_send(unsigned int c) {
     *UART0_DR=c;
 }
 
+
+/* Read a line  */
+
+int ReadLine(char *buf)
+{
+    int num;
+    for(num=0;num<100;num++)
+    {
+        char c = uart_getc();
+        uart_send(c);
+        if(c == '\n' || c == '\0' || c == 'r') break;
+        buf[num] = c;
+    }
+    return num;
+}
+
+
+
+
+
+
+
 /**
  * Receive a character
  */
