@@ -75,7 +75,8 @@ void main()
             uart_puts("  not found, use help!!!\n");
         }
 			
-        /* if(REBOOT == 0)*/ uart_puts("\r# ");
+        /* if(REBOOT == 0)*/ 
+        uart_puts("\r# ");
 			
         //init input_command
         for(i=0;i<100;i++) input[i] = '0';

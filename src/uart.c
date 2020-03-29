@@ -68,13 +68,16 @@ void uart_send(unsigned int c) {
 int ReadLine(char *buf)
 {
     int num;
+    uart_puts("Reading...\n\r");
     for(num=0;num<100;num++)
     {
         char c = uart_getc();
         uart_send(c);
-        if(c == '\n' || c == '\0' || c == '\r') break;
         buf[num] = c;
+        if(c == '\n' || c == '\0' || c == '\r') break;
     }
+    buf[num+1] = '\n';
+    buf[num+2] = '\0';
     return num;
 }
 
