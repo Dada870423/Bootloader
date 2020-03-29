@@ -36,7 +36,6 @@ void main()
     // echo everything back
     for(;;)
     {
-        char key_in;
         length = ReadLine(input);
 		
         //deal with the command
@@ -57,7 +56,7 @@ void main()
         else if(HELP) uart_puts("\rhello : print Hello World!\nhelp : help\nreboot : reboot rpi3\ntimestamp : get current timestamp\n");
         else if(REBOOT)
         {
-            uart_puts(" \n\r");
+            uart_puts("\n");
             reset(3); 
         }
         else if(TIMESTAMP)
@@ -76,7 +75,7 @@ void main()
             uart_puts("  not found, use help!!!\n");
         }
 			
-        if(REBOOT == 0) uart_puts("\r# ");
+        /* if(REBOOT == 0)*/ uart_puts("\r# ");
 			
         //init input_command
         for(i=0;i<100;i++) input[i] = '0';

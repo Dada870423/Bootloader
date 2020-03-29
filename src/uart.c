@@ -72,7 +72,7 @@ int ReadLine(char *buf)
     {
         char c = uart_getc();
         uart_send(c);
-        if(c == '\n' || c == '\0' || c == 'r') break;
+        if(c == '\n' || c == '\0' || c == '\r') break;
         buf[num] = c;
     }
     return num;
