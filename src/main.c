@@ -57,7 +57,7 @@ void main()
         else if(REBOOT)
         {
             uart_puts("\n\r");
-            reset(10); 
+            reset(1000); 
         }
         else if(TIMESTAMP)
         {
